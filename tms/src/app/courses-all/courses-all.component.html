@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-9">
+      <h1>Danh sách các tin:</h1>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <div class="input-group">
+          <input [(ngModel)]="searchText" class="form-control input-lg" placeholder="Search" />
+          <button class="btn btn-info btn-sm" type="button">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="form-group">
+        <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox">
+      </div> -->
+  <div class="row">
+    <div class="col-md-4 course-item" *ngFor="let item of course.courseList
+        | grdFilter: { title: searchText}
+        | paginate: { itemsPerPage: 6, currentPage: p }" value="item.courseid">
+
+      <div class="blog-box">
+        <a routerLink="/details/{{item.courseid}}"> <img src="assets/Images/{{item.image_course}}"
+            style="width: auto;height: 210px; " alt="blog1" class="img-course" /></a>
+        <h3><p>{{item.title}}</p></h3>
+        <p>Khóa học dạy về chương trình : {{item.description}} <br> Thời gian khóa học : {{item.time}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <pagination-controls (pageChange)="p = $event" style="margin: auto"></pagination-controls>
+  </div>
+</div>

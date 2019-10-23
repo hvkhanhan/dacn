@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h1><strong>Thông Tin Khóa Học</strong></h1>
+      <span class="title">Thông tin chi tiết khóa học</span>
+      <div *ngIf="imagePath">
+        <label>Image</label><br>
+        <img [src]="imagePath" width="250px" height="200px">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form [formGroup]="ViewCourseForm">
+        <div class="form-group">
+
+          <input type="hidden" class="form-control" formControlName="courseid">
+          <input type="hidden" class="form-control" formControlName="status">
+
+          <input type="hidden" class="form-control" formControlName="trainee_course">
+
+          <label>Title</label>
+          <input disabled type="text" class="form-control" placeholder="Title" formControlName="title" required>
+          <!-- <div class="validation-error" *ngIf="title.invalid && title.touched">title is required. </div> -->
+        </div>
+        <div class="form-group">
+          <label>Created time</label>
+          <input disabled class="form-control" formControlName="createddate">
+        </div>
+        <div class="form-group">
+          <label>city</label>
+          <textarea disabled type="text" class="form-control" placeholder="city" formControlName="city"
+            required></textarea>
+          <!-- <div class="validation-error" *ngIf="city.invalid && city.touched">cyti is required. </div> -->
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea disabled type="text" class="form-control" placeholder="Description" formControlName="description"
+            required></textarea>
+          <!-- <div class="validation-error" *ngIf="description.invalid && description.touched">description is required. </div> -->
+        </div>
+        <div class="form-group ">
+          <textarea disabled type="text" rows="4" placeholder="Address" formControlName="address" class="form-control"
+            required></textarea>
+          <!-- <div class="validation-error" *ngIf="address.invalid && address.touched">Address is required.</div> -->
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>Time</label>
+            <input disabled type="text" class="form-control" placeholder="time" formControlName="time"
+              class="form-control" required>
+            <!-- <div class="validation-error" *ngIf="time.invalid && time.touched">time is required.</div> -->
+          </div>
+
+          <div class="form-group col-6">
+            <label>Skill</label>
+            <select type="number" formControlName="idskill" class="form-control" disabled>
+              <option *ngFor="let skill of courseService.skillList" [value]="skill.idskill">
+                {{skill.skillname}}</option>
+              <!-- <div class="validation-error" *ngIf="Categoryid.invalid && Categoryid.touched">Category is required.</div> -->
+            </select>
+          </div>
+        </div>
+
+        <!-- list course theo id skill -->
+
+        <div class="row">
+          <div class="col-md-4 course-item" *ngFor="let item of course.courseList
+              | grdFilter: { title: searchText}
+              | paginate: { itemsPerPage: 6, currentPage: p }" value="item.courseid">
+
+
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

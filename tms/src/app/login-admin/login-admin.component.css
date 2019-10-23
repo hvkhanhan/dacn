@@ -1,0 +1,10 @@
+div.validation-error{
+    color:red;
+}
+div.modal-header{
+    background: #ececec;
+}
+
+a.forget{
+    margin-left: 300px;
+}

@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <h2>Mangage Course</h2>
+
+    <br>
+    <input [(ngModel)]="searchText" placeholder="Search Course Name..." style="width: 30%;margin-top: 10px;margin-left: 36px" class="advancedSearchTextbox form-control">
+      <hr>
+      <select (change)="selectOption($event.target.value)"
+      [(ngModel)]="selected">
+        <option [value]="show.id" *ngFor="let show of options" (click)="selectOption()">
+          {{show.value}}
+        </option>
+      </select>
+      <table class="table table-bordered table-hover text-center">
+          <tr ngclass="btn-primary">
+            <th class="tbl2">Course ID</th>
+            <th class="tbl2">Title</th>
+            <th class="tbl2">Description</th>
+            <th class="tbl2">City</th>
+            <th class="tbl2">Address</th>
+            <th class="tbl2">time</th>
+            <th class="tbl2">Createddate</th>
+            <th class="tbl2">Skill</th>
+            <th class="tbl2">Trainee Name</th>
+            <th class="tbl2">Action</th>
+          </tr>
+
+          <tr *ngFor="let cou of allCourse | async | grdFilter: {title: searchText, blog: searchText}  | paginate: { itemsPerPage: item, currentPage: p }">
+            <td class="tbl2">{{cou.courseid }}</td>
+            <td class="tbl2">{{cou.title}}</td>
+            <td class="tbl2">{{cou.description}}</td>
+            <td class="tbl2">{{cou.city}}</td>
+            <td class="tbl2">{{cou.address}}</td>
+            <td class="tbl2">{{cou.time}}</td>
+            <td class="tbl2">{{cou.createddate}}</td>
+            <td class="tbl2">{{cou.skill}}</td>
+            <td class="tbl2">{{cou.trainee}}</td>
+            <td class="tbl2">
+              <button type="button" (click)="onEdit(cou)" class="btn btn-warning">Edit</button>
+              <button type="button" (click)="deleteCourse(cou.courseid)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+
+

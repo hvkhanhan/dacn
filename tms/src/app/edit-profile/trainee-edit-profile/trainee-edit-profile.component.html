@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="traineeEditform" (ngSubmit)="onFormSubmit(traineeEditform.value)">
+    <div class="modal-header" style="background-color:silver; margin: -16px -16px 10px -16px;">
+      <h3 class="modal-title">Edit-Profile Trainee </h3>
+    </div>
+
+    <input type="hidden" class="form-control" formControlName="traineeid">
+    <div class="form-group">
+      <label><b>Full name</b></label>
+      <input type="text" class="form-control" formControlName="name">
+      <span *ngIf="!traineeEditform.get('name').valid && traineeEditform.get('name').touched">Please enter Name</span>
+    </div>
+    <div class="form-group">
+      <label><b>Email</b></label>
+      <input type="email" disabled="true" class="form-control" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label><b>Phone</b></label>
+      <input type="text" class="form-control" formControlName="phone">
+    </div>
+    <div class="form-group">
+      <label><b>Address</b></label>
+      <textarea type="text" rows="4" class="form-control" formControlName="address"></textarea>
+      <br>
+    </div>
+    <div class="form-group">
+      <input type="hidden" class="form-control" formControlName="password">
+      <input type="hidden" class="form-control" formControlName="isActive">
+      <input type="hidden" class="form-control" formControlName="activationcode">
+      <input type="hidden" class="form-control" formControlName="resetpasswordcode">
+    </div>
+      <div class="form-group ">
+        <button type="submit" [disabled]="!traineeEditform.valid" class="btn btn-lg btn-success btn-block">Save</button>
+      </div>
+      <br>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <h2>Mangage Skill</h2>
+    <br>
+    <a class="create" (click)="onCreate()">
+        <button type="button" class="btn btn-primary" >
+            Add Skill
+        </button>
+    </a>
+
+    <br>
+    <input [(ngModel)]="searchText" placeholder="Search Skill Name..." style="width: 30%;margin-top: 10px;margin-left: 36px" class="advancedSearchTextbox form-control">
+      <hr>
+      <select (change)="selectOption($event.target.value)"
+      [(ngModel)]="selected">
+        <option [value]="show.id" *ngFor="let show of options" (click)="selectOption()">
+          {{show.value}}
+        </option>
+      </select>
+      <table class="table table-bordered table-hover text-center" >
+        <tr ngclass="btn-primary">
+          <th class="tbl2">ID Skill</th>
+          <th class="tbl2">Skill Name</th>
+          <th class="tbl2">Action</th>
+        </tr>
+        <tr *ngFor="let ski of allSkill | async | grdFilter: {skillname: searchText, blog: searchText}  | paginate: { itemsPerPage: item, currentPage: p }">
+          <td class="tbl2">{{ski.idskill}}</td>
+          <td class="tbl2">{{ski.skillname}}</td>
+          <td class="tbl2">
+            <button type="button" (click)="onEdit(ski)" class="btn btn-warning">Edit</button>
+            <button type="button" (click)="deleteSkill(ski.idskill)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+
+        </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+

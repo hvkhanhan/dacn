@@ -1,0 +1,17 @@
+<div class="container-12">
+    <a class="close">
+        <button type="submit" class="btn btn-warning" (click)="onClose()">X</button>
+    </a>
+    <form [formGroup]="formfroupAdd" (ngSubmit)="onSubmit(formfroupAdd.value)">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Create Category</h3>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Category Name" formControlName="categoryname" required>
+            <div class="validation-error" *ngIf="formfroupAdd.get('categoryname').invalid && formfroupAdd.get('categoryname').touched">
+              <div *ngIf="formfroupAdd.get('categoryname').errors['required']"> Categoryname is required</div>
+            </div>
+        </div>
+        <button type="submit" [disabled]="formfroupAdd.invalid" class="btn btn-lg btn-success btn-block">Add Category</button>
+    </form>
+</div>

@@ -1,0 +1,85 @@
+<div class="container content">
+  <form #form=ngForm [formGroup]="SignUpForm" (ngSubmit)="onFormSubmit(SignUpForm.value)">
+    <div class="modal-header" style="background-color:silver; margin: -16px -16px 10px -16px;">
+      <h3 class="modal-title">Register</h3>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Full name" formControlName="name" required
+        pattern="^[a-zA-Z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*">
+      <div class="validation-error" *ngIf="SignUpForm.get('name').invalid && SignUpForm.get('name').touched">
+        <div *ngIf="SignUpForm.get('name').errors['required']"> Name is required</div>
+        <div *ngIf="SignUpForm.get('name').errors['pattern']"> Name is invalid </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-7">
+        <input type="text" class="form-control" placeholder="Email" formControlName="email" required
+          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z-]+\.[a-zA-Z-.]+$">
+        <div class="validation-error" *ngIf="SignUpForm.get('email').invalid && SignUpForm.get('email').touched">
+          <div *ngIf="SignUpForm.get('email').errors['required']"> Email is required</div>
+          <div *ngIf="SignUpForm.get('email').errors['pattern']"> Email is invalid </div>
+        </div>
+      </div>
+      <div class="form-group col-5 ">
+        <input type="text" class="form-control" placeholder="Phone number" formControlName="phone"
+          pattern="[0]{1}[0-9]{9}" required>
+        <div class="validation-error" *ngIf="SignUpForm.get('phone').invalid && SignUpForm.get('phone').touched">
+          <div *ngIf="SignUpForm.get('phone').errors['required']"> Phone is required</div>
+          <div *ngIf="SignUpForm.get('phone').errors['pattern']"> Phone is invalid </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Address" formControlName="address" required>
+      <div class="validation-error" *ngIf="SignUpForm.get('address').invalid && SignUpForm.get('address').touched">
+        <div *ngIf="SignUpForm.get('address').errors['required']"> Address is required</div>
+        <div *ngIf="SignUpForm.get('address').errors['pattern']"> Address is invalid </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="Password" formControlName="password"
+        #password pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,}" required>
+      <div class="validation-error" *ngIf="SignUpForm.get('password').invalid && SignUpForm.get('password').touched">
+        <div *ngIf="SignUpForm.get('password').errors['required']"> Password is required</div>
+        <div *ngIf="SignUpForm.get('password').errors['pattern']"> Password is invalid </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmpassword"
+        required compare="password">
+      <div class="validation-error"
+        *ngIf="SignUpForm.get('confirmpassword').invalid && SignUpForm.get('confirmpassword').touched">
+        <div *ngIf="SignUpForm.get('confirmpassword').errors['required']"> Confirm Password is required</div>
+        <div *ngIf="SignUpForm.get('confirmpassword').errors['compare']"> Confirm Password do not match </div>
+      </div>
+    </div>
+    <div class="form-row text-center">
+      <div class="form-group col-6">
+        <div class="radio">
+          <p><input type="radio" name="role" (click)="change(false)" checked="true">Trainee</p>
+        </div>
+      </div>
+      <div class="form-group col-6">
+        <div class="radio">
+          <p><input type="radio" name="role" (click)="change(true)">Mentor</p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" [hidden]="!ismentor">
+      <h5><b>Please Choose Your Skill</b></h5>
+      <select type="input" placeholder="Skill" class="form-control" formControlName="idskill">
+        <option *ngFor="let skill of mentorService.skillList" [value]="skill.idskill">{{skill.skillname}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="form-group ">
+        <button type="submit" [disabled]="!SignUpForm.valid" style="height: 50px"
+          class="btn btn-lg btn-success btn-block" keyup.enter="onSubmit(form)">Submit</button>
+      </div>
+    </div>
+    <div class="form-group col-6 text-center">
+      <a routerLink="/sign-in">Click here to sign in</a>
+    </div>
+  </form>
+  <br>
+</div>

@@ -1,0 +1,51 @@
+<div class="container">
+  <form [formGroup]="mentorEditform" (ngSubmit)="onFormSubmit(mentorEditform.value)">
+    <div class="modal-header" style="background-color:silver; margin: -16px -16px 10px -16px;">
+      <h3 class="modal-title">Edit-Profile mentor </h3>
+    </div>
+
+    <input type="hidden" formControlName="mentorid">
+    <div class="form-group"></div>
+    <label><b>Full name</b></label>
+    <input type="text" class="form-control" formControlName="name"
+      pattern="^[a-zA-Z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*">
+    <div class="validation-error" *ngIf="!mentorEditform.get('name').valid && mentorEditform.get('name').touched">Please
+      enter Name</div>
+    <div class="form-group">
+      <label><b>Email</b></label>
+      <input type="email" disabled="true" class="form-control" formControlName="email"
+        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z-]+\.[a-zA-Z-.]+$">
+      <div class="validation-error" *ngIf="!mentorEditform.get('email').valid && mentorEditform.get('email').touched">
+        <div *ngIf="mentorEditform.get('email').errors['required']"> Email is required</div>
+        <div *ngIf="mentorEditform.get('email').errors['pattern']"> Email must be true </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label><b>Phone</b></label>
+      <input type="text" class="form-control" formControlName="phone" pattern="[0]{1}[0-9]{9}">
+      <div class="validation-error" *ngIf="mentorEditform.get('phone').invalid && mentorEditform.get('phone').touched">Phone is required.</div>
+    </div>
+    <div class="form-group">
+      <label><b>Address</b></label>
+      <textarea type="text" rows="4" class="form-control" formControlName="address"></textarea>
+      <div class="validation-error" *ngIf="mentorEditform.get('address').invalid && mentorEditform.get('address').touched">Address is required.</div>
+    </div>
+    <div class="form-group">
+      <label><b>Skill</b></label>
+      <select type="input" class="form-control" formControlName="idskill">
+        <option *ngFor="let skill of mentorService.skillList" [value]="skill.idskill">{{skill.skillname}}</option>
+      </select>
+      <div class="validation-error" *ngIf="mentorEditform.get('idskill').invalid && mentorEditform.get('idskill').touched">Skill is required.</div>
+    </div>
+    <br>
+    <input type="hidden" class="form-control" formControlName="password">
+    <input type="hidden" class="form-control" formControlName="isActive">
+    <input type="hidden" class="form-control" formControlName="activationcode">
+    <input type="hidden" class="form-control" formControlName="resetpasswordcode">
+
+    <div class="form-group ">
+      <button type="submit" [disabled]="!mentorEditform.valid" class="btn btn-lg btn-success btn-block">Save</button>
+      <br>
+    </div>
+  </form>
+</div>

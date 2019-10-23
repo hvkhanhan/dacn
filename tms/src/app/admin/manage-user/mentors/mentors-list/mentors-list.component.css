@@ -1,0 +1,18 @@
+div.container-fluid{
+    padding: 15px 0px;
+    display: block;
+    margin-top: 0px;
+}
+table, th, td {
+    border: 1px solid black;
+}
+h2{
+    text-align: center;
+}
+
+a.create , button{
+    margin-left: 20px;
+}
+input.advancedSearchTextbox{
+    margin-left: 15px;
+}

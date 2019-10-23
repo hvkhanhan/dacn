@@ -1,0 +1,46 @@
+<div class="container-12">
+    <a class="close">
+        <button type="submit" class="btn btn-dark" (click)="onClose()">X</button>
+    </a>
+    <form [formGroup]="formfroupAdd" (ngSubmit)="onSubmit(formfroupAdd.value)">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Create Account Trainee</h3>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Full Name" formControlName="name" required>
+            <div class="validation-error" *ngIf="formfroupAdd.get('name').invalid && formfroupAdd.get('name').touched">
+              <div *ngIf="formfroupAdd.get('name').errors['required']">Name is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Email" formControlName="email" required>
+            <div class="validation-error" *ngIf="formfroupAdd.get('email').invalid && formfroupAdd.get('email').touched">
+              <div *ngIf="formfroupAdd.get('email').errors['required']">Email is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Phone" formControlName="phone" required>
+            <div class="validation-error" *ngIf="formfroupAdd.get('phone').invalid && formfroupAdd.get('phone').touched">
+              <div *ngIf="formfroupAdd.get('phone').errors['required']">Phone is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Address" formControlName="address" required>
+            <div class="validation-error" *ngIf="formfroupAdd.get('address').invalid && formfroupAdd.get('address').touched">
+              <div *ngIf="formfroupAdd.get('address').errors['required']">Address is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Password" formControlName="password" required>
+            <div class="validation-error" *ngIf="formfroupAdd.get('password').invalid && formfroupAdd.get('password').touched">
+              <div *ngIf="formfroupAdd.get('password').errors['required']"> Password is required</div>
+            </div>
+        </div>
+        <button type="submit" [disabled]="formfroupAdd.invalid" class="btn btn-lg btn-success btn-block">Add Account Trainee</button>
+    </form>
+</div>
+

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tmsdbModelStoreContainer" CdmEntityContainer="tmsdbEntities1">
+    <EntitySetMapping Name="assigneds">
+      <EntityTypeMapping TypeName="tmsdbModel.assigned">
+        <MappingFragment StoreEntitySet="assigned">
+          <ScalarProperty Name="mentorid" ColumnName="mentorid" />
+          <ScalarProperty Name="courseid" ColumnName="courseid" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="startday" ColumnName="startday" />
+          <ScalarProperty Name="endday" ColumnName="endday" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="time" ColumnName="time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="tmsdbModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+          <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="tmsdbModel.course">
+        <MappingFragment StoreEntitySet="course">
+          <ScalarProperty Name="courseid" ColumnName="courseid" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="trainee_course" ColumnName="trainee_course" />
+          <ScalarProperty Name="idskill" ColumnName="idskill" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="isnotification" ColumnName="isnotification" />
+          <ScalarProperty Name="image_course" ColumnName="image_course" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mentors">
+      <EntityTypeMapping TypeName="tmsdbModel.mentor">
+        <MappingFragment StoreEntitySet="mentor">
+          <ScalarProperty Name="mentorid" ColumnName="mentorid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="idskill" ColumnName="idskill" />
+          <ScalarProperty Name="activationcode" ColumnName="activationcode" />
+          <ScalarProperty Name="resetpasswordcode" ColumnName="resetpasswordcode" />
+          <ScalarProperty Name="isreceivenotification" ColumnName="isreceivenotification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="skills">
+      <EntityTypeMapping TypeName="tmsdbModel.skill">
+        <MappingFragment StoreEntitySet="skill">
+          <ScalarProperty Name="idskill" ColumnName="idskill" />
+          <ScalarProperty Name="skillname" ColumnName="skillname" />
+          <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trainees">
+      <EntityTypeMapping TypeName="tmsdbModel.trainee">
+        <MappingFragment StoreEntitySet="trainee">
+          <ScalarProperty Name="traineeid" ColumnName="traineeid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="activationcode" ColumnName="activationcode" />
+          <ScalarProperty Name="resetpasswordcode" ColumnName="resetpasswordcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

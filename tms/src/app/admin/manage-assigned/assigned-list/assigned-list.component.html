@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <h2>Mangage Assigned</h2>
+  <br>
+  <input [(ngModel)]="searchText" placeholder="Search..." style="width: 30%;margin-top: 10px;margin-left: 36px" class="advancedSearchTextbox form-control">
+    <hr>
+    <select (change)="selectOption($event.target.value)"
+      [(ngModel)]="selected">
+        <option [value]="show.id" *ngFor="let show of options" (click)="selectOption()">
+          {{show.value}}
+        </option>
+    </select>
+    <table class="table table-bordered table-hover text-center">
+        <tr ngclass="btn-primary">
+          <th class="tbl2">Mentor Name</th>
+          <th class="tbl2">Course Title</th>
+          <th class="tbl2">Time Start</th>
+          <th class="tbl2">Time Finally</th>
+          <th class="tbl2">Address</th>
+          <th class="tbl2">Note</th>
+          <th class="tbl2">Time</th>
+          <th class="tbl2">Action</th>
+        </tr>
+
+        <tr *ngFor="let ass of allAssigned | async | grdFilter: {mentor: searchText, course: searchText, address: searchText,  blog: searchText}  | paginate: { itemsPerPage: item, currentPage: p }">
+          <td class="tbl2">{{ass.mentorname}}</td>
+          <td class="tbl2">{{ass.course}}</td>
+          <td class="tbl2">{{ass.startday}}</td>
+          <td class="tbl2">{{ass.endday}}</td>
+          <td class="tbl2">{{ass.address}}</td>
+          <td class="tbl2">{{ass.notes}}</td>
+          <td class="tbl2">{{ass.time}}</td>
+          <td class="tbl2">
+            <button type="button" (click)="onEdit(ass)" class="btn btn-warning">Edit</button>
+            <button type="button" (click)="deleteAssign(ass.courseid,ass.mentorid)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+

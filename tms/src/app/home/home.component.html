@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <section class="banner">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+        <li data-target="#demo" data-slide-to="4"></li>
+      </ul>
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/img/df_9.jpg" alt="Banner" width="1100" height="500">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/image1.jpg" alt="Banner1" width="1100" height="500">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/post-image-business-systems.jpg" alt="Banner2" width="1100" height="500">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/gallery_big_1.jpg" alt="Banner3" width="1100" height="500">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/fullsizerender-51.jpg" alt="Banner4" width="1100" height="500">
+        </div>
+      </div>
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </section>
+  <app-breadcrumb></app-breadcrumb>
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>

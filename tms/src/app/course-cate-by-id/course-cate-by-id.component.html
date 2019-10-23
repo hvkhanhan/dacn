@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <h1>Danh sách tin</h1>
+  <div class="row">
+    <div class="col-md-4 course-item" *ngFor="let item of courseService.courseListById
+          | grdFilter: { title: searchText}
+          | paginate: { itemsPerPage: 6, currentPage: p }" value="item.courseid">
+      <div class="blog-box">
+        <!-- <a [routerLink]="['/courses/view/',item.courseid]"> <img src="assets/img/img1.jpg" alt="blog1" class="img-course" /></a> -->
+        <a routerLink="/details/{{item.courseid}}"> <img src="assets/Images/{{item.image_course}}"
+          style="width: auto;height: 210px; " alt="blog1" class="img-course" /></a>
+        <h3>{{item.title}}</h3>
+        <p>Khóa học dạy về chương trình : {{item.description}} <br> Thời gian khóa học : {{item.time}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <pagination-controls (pageChange)="p = $event" style="margin: auto"></pagination-controls>
+  </div>
+</div>

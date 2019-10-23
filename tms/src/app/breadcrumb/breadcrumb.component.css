@@ -1,0 +1,33 @@
+.breadcrumb {
+  background: none;
+  font-size: 0.8em;
+  margin: 0;
+}
+a,
+span {
+  color: darkgrey;
+  font-size: 20px;
+}
+a:hover,
+span:hover {
+  color: dimgrey;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+  float: left;
+  margin: 5px;
+}
+li:last-child {
+  font-size: 20px;
+  margin-right: 20px;
+}
+li::after {
+  font-size: 20px;
+  content: " ->";
+  color: darkgrey;
+}
+li:last-child::after {
+  font-size: 20px;
+  content: "";
+}

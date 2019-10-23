@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please Sign In</h5>
+      </div>
+
+      <div class="modal-body" >
+          <form [formGroup]="formfroup" (ngSubmit)="onSubmit(formfroup.value)">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" formControlName="email" required
+                  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z-]+\.[a-zA-Z-.]+$">
+                <div class="validation-error" *ngIf="formfroup.get('email').invalid && formfroup.get('email').touched">
+                  <div *ngIf="formfroup.get('email').errors['required']"> Email is required</div>
+                  <div *ngIf="formfroup.get('email').errors['pattern']"> Email is invalid </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control"  placeholder="Password" formControlName="password" required>
+              </div>
+
+            <div class="form-group">
+              <input type="checkbox" formControlName="check" >&nbsp;&nbsp; <label>Remember Me</label>
+            </div>
+
+              <div class="login">
+                  <button type="submit" class="btn btn-lg btn-success btn-block" [disabled]="formfroup.invalid">Login</button>
+              </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+

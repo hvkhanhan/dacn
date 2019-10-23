@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h3><strong>Thông tin chi tiết </strong></h3>
+      <span class="title">Thời gian diễn ra khóa học</span>
+    </div>
+    <div class="col-md-6">
+      <form [formGroup]="acceptCourseForm" (ngSubmit)="onFormSubmit(acceptCourseForm.value)">
+        <div class="form-group">
+          <label><b>Start Date</b></label>
+          <input type="date" class="form-control" formControlName="startday" required>
+        </div>
+        <div class="form-group">
+          <label><b>End Date</b></label>
+          <input type="date" class="form-control" formControlName="endday" required>
+        </div>
+        <div class="form-group">
+          <label><b>Notes</b></label>
+          <textarea type="text" class="form-control" formControlName="notes"></textarea>
+        </div>
+        <div class="form-group">
+          <label><b>Address</b></label>
+          <textarea type="text" class="form-control" formControlName="address"></textarea>
+        </div>
+        <div class="form-group">
+          <label><b>Time</b></label>
+          <textarea type="text" class="form-control" formControlName="time"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="!acceptCourseForm.valid" style="height: 50px"
+            class="btn btn-lg btn-success btn-block" keyup.enter="onSubmit(form)">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

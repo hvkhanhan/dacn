@@ -1,0 +1,9 @@
+.container-fluid{
+  color: white;
+  box-shadow:none;
+  height: auto;
+  margin-top:15px;
+}
+.footer-padding-top{
+  padding-top: 20px;
+}

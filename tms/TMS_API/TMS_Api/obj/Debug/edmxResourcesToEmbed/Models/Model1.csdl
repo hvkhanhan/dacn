@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tmsdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="assigned">
+    <Key>
+      <PropertyRef Name="mentorid" />
+      <PropertyRef Name="courseid" />
+    </Key>
+    <Property Name="mentorid" Type="Int32" Nullable="false" />
+    <Property Name="courseid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="notes" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="startday" Type="DateTime" />
+    <Property Name="endday" Type="DateTime" />
+    <Property Name="address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="time" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="course" Relationship="Self.courseid" FromRole="assigned" ToRole="course" />
+    <NavigationProperty Name="mentor" Relationship="Self.mentorid" FromRole="assigned" ToRole="mentor" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="categoryid" />
+    </Key>
+    <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="skills" Relationship="Self.categoryid_skill" FromRole="category" ToRole="skill" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="courseid" />
+    </Key>
+    <Property Name="courseid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" />
+    <Property Name="trainee_course" Type="Int32" Nullable="false" />
+    <Property Name="idskill" Type="Int32" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="isnotification" Type="Int32" Nullable="false" />
+    <Property Name="image_course" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="assigneds" Relationship="Self.courseid" FromRole="course" ToRole="assigned" />
+    <NavigationProperty Name="skill" Relationship="Self.idskill_course" FromRole="course" ToRole="skill" />
+    <NavigationProperty Name="trainee" Relationship="Self.trainee_course" FromRole="course" ToRole="trainee" />
+  </EntityType>
+  <EntityType Name="mentor">
+    <Key>
+      <PropertyRef Name="mentorid" />
+    </Key>
+    <Property Name="mentorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="SByte" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idskill" Type="Int32" Nullable="false" />
+    <Property Name="activationcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="resetpasswordcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="isreceivenotification" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="assigneds" Relationship="Self.mentorid" FromRole="mentor" ToRole="assigned" />
+    <NavigationProperty Name="skill" Relationship="Self.idskill" FromRole="mentor" ToRole="skill" />
+  </EntityType>
+  <EntityType Name="skill">
+    <Key>
+      <PropertyRef Name="idskill" />
+    </Key>
+    <Property Name="idskill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="skillname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="categoryid" Type="Int32" />
+    <NavigationProperty Name="category" Relationship="Self.categoryid_skill" FromRole="skill" ToRole="category" />
+    <NavigationProperty Name="courses" Relationship="Self.idskill_course" FromRole="skill" ToRole="course" />
+    <NavigationProperty Name="mentors" Relationship="Self.idskill" FromRole="skill" ToRole="mentor" />
+  </EntityType>
+  <EntityType Name="trainee">
+    <Key>
+      <PropertyRef Name="traineeid" />
+    </Key>
+    <Property Name="traineeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="SByte" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activationcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="resetpasswordcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="courses" Relationship="Self.trainee_course" FromRole="trainee" ToRole="course" />
+  </EntityType>
+  <Association Name="courseid">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="assigned" Type="Self.assigned" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="courseid" />
+      </Principal>
+      <Dependent Role="assigned">
+        <PropertyRef Name="courseid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="mentorid">
+    <End Role="mentor" Type="Self.mentor" Multiplicity="1" />
+    <End Role="assigned" Type="Self.assigned" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mentor">
+        <PropertyRef Name="mentorid" />
+      </Principal>
+      <Dependent Role="assigned">
+        <PropertyRef Name="mentorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="categoryid_skill">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="skill" Type="Self.skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="categoryid" />
+      </Principal>
+      <Dependent Role="skill">
+        <PropertyRef Name="categoryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idskill_course">
+    <End Role="skill" Type="Self.skill" Multiplicity="0..1" />
+    <End Role="course" Type="Self.course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skill">
+        <PropertyRef Name="idskill" />
+      </Principal>
+      <Dependent Role="course">
+        <PropertyRef Name="idskill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="trainee_course">
+    <End Role="trainee" Type="Self.trainee" Multiplicity="1" />
+    <End Role="course" Type="Self.course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trainee">
+        <PropertyRef Name="traineeid" />
+      </Principal>
+      <Dependent Role="course">
+        <PropertyRef Name="trainee_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idskill">
+    <End Role="skill" Type="Self.skill" Multiplicity="1" />
+    <End Role="mentor" Type="Self.mentor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skill">
+        <PropertyRef Name="idskill" />
+      </Principal>
+      <Dependent Role="mentor">
+        <PropertyRef Name="idskill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tmsdbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="assigneds" EntityType="Self.assigned" />
+    <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="courses" EntityType="Self.course" />
+    <EntitySet Name="mentors" EntityType="Self.mentor" />
+    <EntitySet Name="skills" EntityType="Self.skill" />
+    <EntitySet Name="trainees" EntityType="Self.trainee" />
+    <AssociationSet Name="courseid" Association="Self.courseid">
+      <End Role="course" EntitySet="courses" />
+      <End Role="assigned" EntitySet="assigneds" />
+    </AssociationSet>
+    <AssociationSet Name="mentorid" Association="Self.mentorid">
+      <End Role="mentor" EntitySet="mentors" />
+      <End Role="assigned" EntitySet="assigneds" />
+    </AssociationSet>
+    <AssociationSet Name="categoryid_skill" Association="Self.categoryid_skill">
+      <End Role="category" EntitySet="categories" />
+      <End Role="skill" EntitySet="skills" />
+    </AssociationSet>
+    <AssociationSet Name="idskill_course" Association="Self.idskill_course">
+      <End Role="skill" EntitySet="skills" />
+      <End Role="course" EntitySet="courses" />
+    </AssociationSet>
+    <AssociationSet Name="trainee_course" Association="Self.trainee_course">
+      <End Role="trainee" EntitySet="trainees" />
+      <End Role="course" EntitySet="courses" />
+    </AssociationSet>
+    <AssociationSet Name="idskill" Association="Self.idskill">
+      <End Role="skill" EntitySet="skills" />
+      <End Role="mentor" EntitySet="mentors" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

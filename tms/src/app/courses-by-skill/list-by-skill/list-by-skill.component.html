@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <h2>Related-Courses</h2>
+  <br>
+  <div class="form-group">
+    <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox">
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>City </th>
+          <th>Address</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th> </th>
+        </tr>
+      </thead>
+
+      <tr *ngFor="let all of courseService.relatedList
+        | grdFilter: {title: searchText, time: searchText,  city: searchText }
+        | paginate: { itemsPerPage: 7, currentPage: p } ">
+        <td>{{all.title}}</td>
+        <td>{{all.city}}</td>
+        <td>{{all.address}}</td>
+        <td>{{all.time}}</td>
+        <td [ngSwitch]="all.status">
+          <div *ngSwitchCase="0">Available</div>
+          <div *ngSwitchCase="1">Contacted</div>
+          <div *ngSwitchCase="2">In Progress</div>
+          <div *ngSwitchCase="3">Finished</div>
+        </td>
+        <td [ngSwitch]="all.status" style="text-align: center">
+          <button class="btn-sm btn-primary" matTooltip="Click here if you want to contact with trainee"
+            (click)="onSend(all.courseid)">
+            Contact
+          </button>
+
+          &nbsp;
+          <button class="btn-sm btn-info" [routerLink]="['accept/',all.courseid]">
+            Assign
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

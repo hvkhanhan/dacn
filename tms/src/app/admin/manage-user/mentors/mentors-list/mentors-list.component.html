@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <h2>Mangage Account Mentor</h2>
+  <br>
+  <a class="create" (click)="onCreate()">
+      <button type="button" class="btn btn-primary" >
+          Add Account Mentor
+      </button>
+  </a>
+
+  <br>
+  <input [(ngModel)]="searchText" placeholder="Search.." style="width: 30%;margin-top: 10px;margin-left: 36px" class="advancedSearchTextbox form-control">
+  <hr>
+  <select (change)="selectOption($event.target.value)"
+  [(ngModel)]="selected">
+    <option [value]="show.id" *ngFor="let show of options" (click)="selectOption()">
+      {{show.value}}
+    </option>
+  </select>
+  <table class="table table-bordered table-hover text-center" >
+    <tr ngclass="btn-primary">
+      <th class="tbl2">Mentor ID</th>
+      <th class="tbl2">Name</th>
+      <th class="tbl2">Email</th>
+      <th class="tbl2">Phone</th>
+      <th class="tbl2">Address</th>
+      <th class="tbl2">Password</th>
+      <th class="tbl2">Skill</th>
+      <th class="tbl2">Action</th>
+    </tr>
+
+    <tr *ngFor="let men of allMentor| async |  grdFilter: {name: searchText, phone: searchText,  blog: searchText} | paginate: { itemsPerPage: item, currentPage: p }">
+      <td class="tbl2">{{men.mentorid }}</td>
+      <td class="tbl2">{{men.name}}</td>
+      <td class="tbl2">{{men.email}}</td>
+      <td class="tbl2">{{men.phone}}</td>
+      <td class="tbl2">{{men.address }}</td>
+      <td class="tbl2">{{men.password}}</td>
+      <td class="tbl2">{{men.skill}}</td>
+      <td class="tbl2">
+          <button type="button"  (click)="onEdit(men)" class="btn btn-warning">Edit</button>
+
+          <button type="button" (click)="onDelete(men.mentorid)" class="btn btn-danger">Delete</button>
+      </td>
+
+    </tr>
+   </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
